@@ -1,0 +1,1 @@
+watch -n 5 "wc -l ~/InterproUnannotated/interpro_coverage.csv"
