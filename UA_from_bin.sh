@@ -32,14 +32,19 @@ grep -F -v -f "$outdir/with_ipr.ids" "$outdir/all.ids" > "$outdir/no_ipr.ids"
 
 # 4. Extract no-IPR sequences
 awk 'NR==FNR {keep[$1]; next}
-     /^>/ {header=$0; seq=""; next}
-     {seq=seq$0}
-     /^>/ || ENDFILE {
-         if (header) {
-             id=substr(header,2);
-             gsub(/\r/,"",id);
-             if (id in keep) print header"\n"seq
-         }
+     /^>/ {
+         if (header != "" && (id in keep)) print header"\n"seq;
+         header=$0;
+         id=substr(header,2);
+         gsub(/\r/,"",id);
+         seq="";
+         next
+     }
+     {
+         seq=seq$0
+     }
+     END {
+         if (header != "" && (id in keep)) print header"\n"seq;
      }' "$outdir/no_ipr.ids" "$faa" > "$outdir/${bin%.faa}_noIPR.faa"
 
 # 5. Filter 120–450 aa
