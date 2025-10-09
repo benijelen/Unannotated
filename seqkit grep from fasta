@@ -1,4 +1,5 @@
 
-seqkit grep -p "GB4-5265-8-15_Bin62_GB4-5265-8-15_scaffold_7589564_13" GB4-5265-8-15_Bin62.1L.faa | seqkit seq -s > ~/GB4sample_single.faa
+seqkit grep -p "GB4-5265-8-15_Bin62_GB4-5265-8-15_scaffold_7589564_13" GB4-5265-8-15_Bin62.1L.faa | \
+awk '/^>/ {if(seq) print seq; print; seq=""; next} {seq=seq$0} END{print seq}' > ~/GB4sample_single.faa
 
 
