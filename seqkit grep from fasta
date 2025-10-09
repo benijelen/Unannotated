@@ -1,0 +1,1 @@
+seqkit grep -p "GB4-5265-8-15_Bin62_GB4-5265-8-15_scaffold_7589564_13" GB4-5265-8-15_Bin62.1L.faa > ~/GB4sample.faa
