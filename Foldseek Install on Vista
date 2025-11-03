@@ -25,7 +25,17 @@ tar xvfz afdb_swissprot.tar.gz
 foldseek createdb "$(pwd)" myDB \
   --threads 8 \
   --file-include '.*\.pdb$' \
-  --file-exclude '^$'
+
+
+cd /work/10930/bjelen/vista/foldseek_dbs
+tar xvfz pdb100.tar.gz
+
+cd /home1/10930/bjelen/esmfold_out/high_conf
+mkdir -p ./tmp
+
+foldseek search myDB $WORK/foldseek_dbs/pdb100_db/pdb aln_pdb100 ./tmp --threads 32 --alignment-mode 3
+foldseek convertalis myDB $WORK/foldseek_dbs/pdb100_db/pdb aln_pdb100 hits_pdb100.m8 --threads 32
+
 
 
 
