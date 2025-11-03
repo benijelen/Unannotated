@@ -1,0 +1,32 @@
+mkdir -p $WORK/apps/foldseek && cd $WORK/apps/foldseek
+
+wget https://mmseqs.com/foldseek/foldseek-linux-arm64.tar.gz
+
+tar xvfz foldseek-linux-arm64.tar.gz
+
+#add this to end of .bashrc (comment out if not using mmSeqs2)
+
+# --- Foldseek PATH (added Nov 2025) ---
+export PATH=$PATH:$WORK/apps/foldseek/foldseek/bin
+
+# --- mmseqs2 PATH (optional, comment out if unused) ---
+export PATH=$PATH:$WORK/apps/mmseqs2/mmseqs/bin
+
+#download foldseek databases for comparison (PDB and AlphaFold-SwissProt)
+mkdir -p $WORK/foldseek_dbs && cd $WORK/foldseek_dbs
+
+wget https://opendata.mmseqs.org/foldseek/pdb100.tar.gz
+wget https://opendata.mmseqs.org/foldseek/pdb100.version
+tar xvfz pdb100.tar.gz
+wget https://foldseek.steineggerlab.workers.dev/afdb_swissprot.tar.gz
+tar xvfz afdb_swissprot.tar.gz
+
+#From within the folder of structures to search - create a DB (will work faster in bulk)
+foldseek createdb "$(pwd)" myDB \
+  --threads 8 \
+  --file-include '.*\.pdb$' \
+  --file-exclude '^$'
+
+
+
+
