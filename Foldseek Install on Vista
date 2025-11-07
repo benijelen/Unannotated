@@ -36,6 +36,12 @@ mkdir -p ./tmp
 foldseek search myDB $WORK/foldseek_dbs/pdb100_db/pdb aln_pdb100 ./tmp --threads 32 --alignment-mode 3
 foldseek convertalis myDB $WORK/foldseek_dbs/pdb100_db/pdb aln_pdb100 hits_pdb100.m8 --threads 32
 
+cd /home1/10930/bjelen/esmfold_out/high_conf
+mkdir -p ./tmp
+
+foldseek search myDB $WORK/foldseek_dbs/afdb_swissprot aln_afsp ./tmp --threads 32 --alignment-mode 3
+foldseek convertalis myDB $WORK/foldseek_dbs/afdb_swissprot aln_afsp hits_afsp.m8 --thr
+
 
 
 
