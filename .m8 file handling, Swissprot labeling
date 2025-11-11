@@ -2,3 +2,16 @@ mkdir -p afsp_db
 tar -xvzf afdb_swissprot.tar.gz -C afsp_db
 
 cd $WORK/foldseek_dbs/afsp_db
+
+
+login2.vista(611)$ QDB=/home1/10930/bjelen/esmfold_out/high_conf/myDB
+login2.vista(612)$ TDB=$WORK/foldseek_dbs/afdb_swissprot
+login2.vista(613)$ ALN=aln_afsp
+login2.vista(614)$ OUT=hits_afsp.with_header.tsv
+login2.vista(615)$ ls -1 "$QDB".index
+
+login2.vista(618)$ foldseek convertalis \
+  "$QDB" "$TDB" "$ALN" "$OUT" \
+  --threads 16 \
+  --format-output 'query,target,fident,alnlen,mismatch,gapopen,qstart,qend,tstart,tend,evalue,bits,theader'
+convertalis /home1/10930/bjelen/esmfold_out/high_conf/myDB /work/10930/bjelen/vista/foldseek_dbs/afdb_swissprot aln_afsp hits_afsp.with_header.tsv --threads 16 --format-output query,target,fident,alnlen,mismatch,gapopen,qstart,qend,tstart,tend,evalue,bits,theader 
