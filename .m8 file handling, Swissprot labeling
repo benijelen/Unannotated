@@ -1,0 +1,4 @@
+mkdir -p afsp_db
+tar -xvzf afdb_swissprot.tar.gz -C afsp_db
+
+cd $WORK/foldseek_dbs/afsp_db
