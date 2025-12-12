@@ -12,16 +12,16 @@ foldseek search     GB4_Bin578_structDB     $WORK/foldseek_dbs/afdb_swissprot   
 
 
 foldseek align \
-    foldseek_Bin578_AFSP/GB4_Bin578_structDB \
+    GB4_Bin578_structDB \
     $WORK/foldseek_dbs/afdb_swissprot \
-    foldseek_Bin578_AFSP/GB4_Bin578_vs_afsp \
-    foldseek_Bin578_AFSP/GB4_Bin578_vs_afsp_aln \
+    GB4_Bin578_vs_afsp \
+    GB4_Bin578_vs_afsp_aln \
     -a
 
 
 foldseek convertalis \
-    foldseek_Bin578_AFSP/GB4_Bin578_structDB \
+    GB4_Bin578_structDB \
     $WORK/foldseek_dbs/afdb_swissprot \
-    foldseek_Bin578_AFSP/GB4_Bin578_vs_afsp_aln \
+    GB4_Bin578_vs_afsp_aln \
     GB4_Bin578_vs_afsp.m8 \
     --format-output "query,target,alntmscore,qcov,tcov,evalue,bits,qlen,tlen"
