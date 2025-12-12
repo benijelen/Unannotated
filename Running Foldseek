@@ -1,0 +1,27 @@
+#Make Dedicated Foldseek Directory
+mkdir foldseek_Bin578_AFSP
+
+#Build query database from within foldseek_Bin578_AFSP   (must not be on login node!! use compute node)
+foldseek createdb \
+    /home1/10930/bjelen/esmfold_out_ALL/high_conf \
+    GB4_Bin578_structDB
+
+
+#Run from Directory where database is built:
+foldseek search     GB4_Bin578_structDB     $WORK/foldseek_dbs/afdb_swissprot     GB4_Bin578_vs_afsp     ./tmp_GB4_Bin578_vs_afsp     --threads 32     --alignment-mode 3
+
+
+foldseek align \
+    foldseek_Bin578_AFSP/GB4_Bin578_structDB \
+    $WORK/foldseek_dbs/afdb_swissprot \
+    foldseek_Bin578_AFSP/GB4_Bin578_vs_afsp \
+    foldseek_Bin578_AFSP/GB4_Bin578_vs_afsp_aln \
+    -a
+
+
+foldseek convertalis \
+    foldseek_Bin578_AFSP/GB4_Bin578_structDB \
+    $WORK/foldseek_dbs/afdb_swissprot \
+    foldseek_Bin578_AFSP/GB4_Bin578_vs_afsp_aln \
+    GB4_Bin578_vs_afsp.m8 \
+    --format-output "query,target,alntmscore,qcov,tcov,evalue,bits,qlen,tlen"
